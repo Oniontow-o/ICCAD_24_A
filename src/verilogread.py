@@ -68,7 +68,7 @@ def veryread(filename):
             gate.append(temp)
 
         loc += 1
-    print(modulename, input, output, wire, gate)
+    # print(modulename, input, output, wire, gate)
     # print(f"gate is {gate}")
     return modulename, input, output, wire, gate
 
