@@ -17,10 +17,10 @@ def veryread(filename):
 
     lines = contents.split(";")
     # module name
-    modulename = lines[0].split("\n")[0]
+    modulename = lines[0].split("\n")[0].split("(")[0]
     
     # inputs
-    inputs_data = lines[1].split(" ")
+    inputs_data = lines[1].replace(","," ").split(" ")
     input = []
     for i in inputs_data:
         if (i.startswith("n")) or (i.startswith("p")) :
@@ -28,7 +28,7 @@ def veryread(filename):
     # print(f"Input is {input}",)
 
     # outputs
-    outputs_data = lines[2].split(" ")
+    outputs_data = lines[2].replace(","," ").split(" ")
     output = []
     for i in outputs_data:
         if (i.startswith("n")) or (i.startswith("p")):
@@ -41,6 +41,8 @@ def veryread(filename):
     for i in wire_data:
         if (i.startswith("n")):
             wire.append(i)
+        if (i.startswith("p")):
+            wire.append(i)
     # print(f"Wire is {wire}")
 
     #gates
@@ -51,7 +53,7 @@ def veryread(filename):
         if(lines[loc].startswith("\nendmodule")):
             break
         temp = []
-        for i in lines[loc].split(" "):
+        for i in lines[loc].replace("("," ").replace(")"," ").split(" "):
             if (
             i.startswith("a") or 
             i.startswith("o") or
@@ -59,13 +61,14 @@ def veryread(filename):
             i.startswith("n") or 
             i.startswith("b") or 
             i.startswith("x")):
+                temp.append(i.lower())
+            if (i.startswith("g")):
+                temp.append(i)            
+            if (i.startswith("n")):
+                temp.append(i)
+            if (i.startswith("p")):
                 temp.append(i)
 
-        if (len(temp) == 5):
-            gate.append(temp)
-        if (len(temp) == 4):
-            temp = temp[0:] + temp[3:]
-            gate.append(temp)
 
         loc += 1
     # print(modulename, input, output, wire, gate)
@@ -130,6 +133,8 @@ def abc_veryread(filename):
             if (i.startswith("g")):
                 temp.append(i)            
             if (i.startswith("n")):
+                temp.append(i)
+            if (i.startswith("p")):
                 temp.append(i)
 
         if (len(temp) == 5):

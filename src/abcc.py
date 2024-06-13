@@ -16,7 +16,7 @@ possible_cmds = [
 "strash; orchestrate;",
 "strash; resub -lz;",
 "strash; csweep; trim;",
-"&get; &muxdec; &put;",
+# "&get; &muxdec; &put;",
 ]
 
 abc_path = "./src/abc"
