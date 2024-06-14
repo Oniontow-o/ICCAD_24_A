@@ -57,3 +57,35 @@ def get_cost(cost_estimator_path, netlist_path, library_path, output_path):
         raise ValueError("Cost value not found in the output.")
     cost_value = float(match.group(1))
     return cost_value
+
+possible_cmds = [
+"src_rw      ",
+"src_rs      ",
+"src_rws     ",
+"resyn2rs    ",
+"r2rs        ",
+"compress2rs ",
+"c2rs        ",
+"&resyn2rs   ",
+"&compress2rs",
+"resyn       ",
+"resyn2      ",
+"resyn2a     ",
+"resyn3      ",
+"compress    ",
+"compress2   ",
+"choice      ",
+"choice2     ",
+"rwsat       ",
+"drwsat2     ",
+"share       ",
+"addinit     ",
+"blif2aig    ",
+"v2p         ",
+"g2p         ",
+"&sw_        ",
+"&fx_        ",
+"&dc3        ",
+"&dc4        ",
+"recadd3     ",
+]
